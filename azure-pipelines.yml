@@ -1,0 +1,36 @@
+name: $(Year:yyyy).$(Month).$(DayOfMonth)$(Rev:.r)
+trigger:
+- master
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+steps:
+- task: UseDotNet@2
+  inputs:
+    packageType: 'sdk'
+    useGlobalJson: true
+- task: DotNetCoreCLI@2
+  displayName: 'dotnet publish'
+  inputs:
+    command: publish
+    publishWebProjects: false
+    projects: '**/*.csproj'
+    arguments: '-o $(Build.ArtifactStagingDirectory)/Output /p:Version=$(Build.BuildNumber)'
+    zipAfterPublish: true
+    modifyOutputPath: true
+
+- task: PublishPipelineArtifact@0
+  displayName: Publish Pipeline Artifact MonsterTruckDrivingTest
+  inputs:
+    artifactName: MonsterTruckDrivingTest
+    targetPath: $(Build.ArtifactStagingDirectory)/Output/MonsterTruckDrivingTest.zip
+- task: DotNetCoreCLI@2
+  displayName: 'Pack' 
+  inputs:
+    command: 'pack'
+    packagesToPack: '**/*.csproj'
+    nobuild: true
+    includesymbols: true
+    includesource: true
+    versioningScheme: 'off'
