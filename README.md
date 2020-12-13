@@ -11,5 +11,3 @@ After the surface has built and the direction of the vehicle been known, the mon
  * L = Rotate 90° to the left.
  
  If the user wants a few different steps, can have a command with (eg, FFRFF).
- 
- [![Build Status](https://dev.azure.com/TekniskUppgift/MonsterTruckDrivingTest/_apis/build/status/waelhsn.MonsterTruckDrivingTest?branchName=main)](https://dev.azure.com/TekniskUppgift/MonsterTruckDrivingTest/_build/latest?definitionId=1&branchName=main)
