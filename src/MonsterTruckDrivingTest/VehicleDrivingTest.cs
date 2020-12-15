@@ -89,7 +89,7 @@ namespace MonsterTruckDrivingTest
             } while (!pass);
 
             //A vector creator for directions.
-            var directionsVector = ImmutableList.Create<char>('N', 'E', 'S', 'W');
+            var directionsVector = ImmutableList.Create('N', 'E', 'S', 'W');
             currentX = x;
             currentY = y;
             currentDirection = initialDirection;
