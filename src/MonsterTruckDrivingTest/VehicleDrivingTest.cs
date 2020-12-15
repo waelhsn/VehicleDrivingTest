@@ -1,4 +1,5 @@
-﻿using System.Collections.Immutable;
+﻿using MonsterTruckDrivingTest.Model;
+using System.Collections.Immutable;
 using static System.Console;
 using System.Linq;
 using System;
@@ -9,11 +10,7 @@ namespace MonsterTruckDrivingTest
     {
         public static void SurfacAndDrivingBuilder()
         {
-            //input the vehicle setting, positions & directions variables.
-            int x = 0, y = 0, currentX, currentY, width = 0, length = 0;
-            char initialDirection, currentDirection;
-            string commands;
-            bool pass = false;
+            var surface = new Surface();
 
             //Input and validation of surface width and length.
             do
@@ -23,44 +20,45 @@ namespace MonsterTruckDrivingTest
                 var dimensions = ReadLine();
                 if (dimensions.Contains(',') &&
                     int.TryParse(dimensions.Split(',')[0],
-                    out width) &&
+                    out surface.Width) &&
                     int.TryParse(dimensions.Split(',')[1],
-                    out length) &&
-                    width > 0 && length > 0)
-                    pass = true;
+                    out surface.Length) &&
+                    surface.Width > 0 && surface.Length > 0)
+                    surface.Pass = true;
                 else
                     WriteLine("ERROR. Invalid dimensions. Please try again.");
-            } while (!pass);
+            } while (!surface.Pass);
 
             //Input and validation of x, y positions.
-            pass = false;
+            surface.Pass = false;
             do
             {
                 Write($"Starting position of the monstertruck (in terms of X and Y (e.g: 0,0)): ");
 
                 var position = ReadLine();
                 if (position.Contains(',') &&
-                    int.TryParse(position.Split(',')[0], out x) &&
-                    int.TryParse(position.Split(',')[1], out y) &&
-                    x >= 0 && y >= 0 &&
-                    x <= width - 1 && y <= length - 1)
-                    pass = true;
+                    int.TryParse(position.Split(',')[0], out surface.X) &&
+                    int.TryParse(position.Split(',')[1], out surface.Y) &&
+                    surface.X >= 0 && surface.Y >= 0 &&
+                    surface.X <= surface.Width - 1 && surface.Y <= surface.Length - 1)
+                    surface.Pass = true;
 
                 else
                     WriteLine("ERROR. Invalid coordinators. Please try again.");
-            } while (!pass);
+            } while (!surface.Pass);
 
             //Input and validation of direction.
-            pass = false;
+            surface.Pass = false;
+            Directions initialDirection;
             do
             {
-                Write($"Direction of the monstertruck at the start point (N, E, S or W): ");
-                initialDirection = ReadLine().ToUpper()[0];
-                if (new[] { 'N', 'E', 'S', 'W' }.Contains(initialDirection))
-                    pass = true;
+                Write($"Direction of the monstertruck at the start point (North, East, South or West): ");
+                bool isValid = Enum.TryParse(ReadLine(), out initialDirection);
+                if (isValid)
+                    surface.Pass = true;
                 else
                     WriteLine("ERROR. Invalid direction. Please try again.");
-            } while (!pass);
+            } while (!surface.Pass);
 
             WriteLine(@"
                       The following commands are supported for execution:
@@ -76,26 +74,25 @@ namespace MonsterTruckDrivingTest
                 //Setting the allowed commands for this driving session.
                 var allowedCommands = new[] { 'F', 'B', 'R', 'L'};
                 Write("Commands to be executed for final driving result: ");
-                commands = ReadLine().ToUpper();
+                surface.Commands = ReadLine().ToUpper();
 
-                foreach (var command in commands)
+                foreach (var command in surface.Commands)
 
                     if (!allowedCommands.Contains(command))
-                        pass = false;
+                        surface.Pass = false;
 
-                if (!pass)
+                if (!surface.Pass)
                     WriteLine("ERROR: Commands contain a character that doesn't belong to allowed set. Please try again.");
 
-            } while (!pass);
+            } while (!surface.Pass);
 
-            //A vector creator for directions.
-            var directionsVector = ImmutableList.Create('N', 'E', 'S', 'W');
-            currentX = x;
-            currentY = y;
-            currentDirection = initialDirection;
+            surface.CurrentX = surface.X;
+            surface.CurrentY = surface.Y;
+
+            Directions currentDirection = initialDirection;
 
             //Process the commands.
-            foreach (var command in commands)
+            foreach (var command in surface.Commands)
             {
                 //Commands switch of possibilities scenarios.
                 switch (command)
@@ -103,37 +100,37 @@ namespace MonsterTruckDrivingTest
                     //Steps cases
                     case 'F':
                         Write("Forwarded ");
-                        currentX += currentDirection == 'E' ? 1 : currentDirection == 'W' ? -1 : 0;
-                        currentY += currentDirection == 'N' ? 1 : currentDirection == 'S' ? -1 : 0;
+                        surface.CurrentX += currentDirection == Directions.East ? 1 : currentDirection == Directions.West ? -1 : 0;
+                        surface.CurrentY += currentDirection == Directions.North ? 1 : currentDirection == Directions.South ? -1 : 0;
                         break;
 
                     case 'B':
                         Write("Backwarded ");
-                        currentX += currentDirection == 'E' ? -1 : currentDirection == 'W' ? 1 : 0;
-                        currentY += currentDirection == 'N' ? -1 : currentDirection == 'S' ? 1 : 0;
+                        surface.CurrentX += currentDirection == Directions.East ? -1 : currentDirection == Directions.West ? 1 : 0;
+                        surface.CurrentY += currentDirection == Directions.North ? -1 : currentDirection == Directions.South ? 1 : 0;
                         break;
 
                         //Rotation cases
                     case 'R':
                         Write("Rotating 90° to the right ");
-                        currentDirection = directionsVector[(directionsVector.IndexOf(currentDirection) + 1) % 4];
+                        currentDirection += 1;
                         break;
 
                     case 'L':
                         Write("Rotating 90° to the left, ");
-                        currentDirection = directionsVector[directionsVector.IndexOf(currentDirection) == 0 ? 3 :
-                            (directionsVector.IndexOf(currentDirection) - 1) % 4];
+                        currentDirection = currentDirection == 0 ?
+                            Directions.West : currentDirection - 1;
                         break;
                 }
 
                 //checker, if we hit a wall.
-                if (currentX < 0 || currentY < 0 || currentX >= width || currentY >= length)
+                if (surface.CurrentX < 0 || surface.CurrentY < 0 || surface.CurrentX >= surface.Width || surface.CurrentY >= surface.Length)
                 {
-                    WriteLine($"Uh oh, we hit the wall!({currentX}, {currentY})");
+                    WriteLine($"Uh oh, we hit the wall!({surface.CurrentX}, {surface.CurrentY})");
                     break;
                 }
 
-                WriteLine($"{currentX}, {currentY} as a postion, \nDirection: {currentDirection}");
+                WriteLine($"{surface.CurrentX}, {surface.CurrentY} as a postion, \nDirection: {currentDirection}");
             }
 
         }

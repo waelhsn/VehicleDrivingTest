@@ -1,10 +1,11 @@
-﻿using static System.Console;
+﻿using MonsterTruckDrivingTest.Model;
+using static System.Console;
 
 namespace MonsterTruckDrivingTest
 {
-    class Program
+    public class Program
     {
-        static void Main(string[] args)
+        public static void Main(string[] args)
         {
             while (true)
             {
