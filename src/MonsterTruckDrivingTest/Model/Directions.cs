@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Text;
-
+﻿
 namespace MonsterTruckDrivingTest.Model
 {
     public enum Directions

@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
+﻿
 namespace MonsterTruckDrivingTest.Model
 {
-    public  class Surface
+    public  class Vehicle
     {
-        public int X = 0;
+        public int X = 0; 
         public int Y = 0;
         public int CurrentX;
         public int CurrentY;
