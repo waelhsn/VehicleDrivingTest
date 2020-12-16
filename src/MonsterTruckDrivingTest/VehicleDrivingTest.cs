@@ -10,8 +10,7 @@ namespace MonsterTruckDrivingTest
     {
         public static void SurfacAndDrivingBuilder()
         {
-            var vehicle = new Vehicle();
-
+            VehicleProperties vehicle;
             //Input and validation of surface width and length.
             do
             {
@@ -68,11 +67,12 @@ namespace MonsterTruckDrivingTest
                        * L = Rotate 90° to the left.
                         ");
 
-            //Input and validation of driving commands.
+            //CommandsCreator.CommandsBuilder();
+           // Input and validation of driving commands.
             do
             {
                 //Setting the allowed commands for this driving session.
-                var allowedCommands = new[] { 'F', 'B', 'R', 'L'};
+                var allowedCommands = new[] { 'F', 'B', 'R', 'L' };
                 Write("Commands to be executed for final driving result: ");
                 vehicle.Commands = ReadLine().ToUpper();
 
