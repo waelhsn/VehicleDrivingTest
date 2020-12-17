@@ -8,8 +8,6 @@ namespace MonsterTruckDrivingTest.Tests
         [TestMethod()]
         public void SurfacAndDrivingBuilderTest()
         {
-            VehicleDrivingTest vehicleDrivingTest = new VehicleDrivingTest();
-            vehicleDrivingTest.Equals(vehicleDrivingTest);
         }
     }
 };

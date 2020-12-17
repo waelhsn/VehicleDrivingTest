@@ -1,7 +1,7 @@
 ﻿using MonsterTruckDrivingTest.Model;
-using static System.Console;
-using System.Linq;
 using System;
+using System.Linq;
+using static System.Console;
 
 namespace MonsterTruckDrivingTest
 {
@@ -12,66 +12,23 @@ namespace MonsterTruckDrivingTest
             while (true)
             {
                 WriteLine("* * * Welcome to Monster Truck driving test * * *");
-
                 var vehicle = new VehicleProperties();
-                var surface = new SurfaceProperties();
                 var vehiclePosition = new Position();
+                var dimensionsPositionsCrator = new DimensionsPositionsCrator();
 
                 //Input and validation of surface width and length.
                 do
                 {
-                    Write($"Width and length of the surface (in terms of Width, Length (e.g: 10,10)): ");
-
-                    var dimensions = ReadLine();
-                    try
-                    {
-
-                        int.TryParse(dimensions.Split(',')[0], out int widthValue);
-                        int.TryParse(dimensions.Split(',')[1], out int lengthValue);
-                        surface.Width = widthValue;
-                        surface.Length = lengthValue;
-
-                    }
-                    catch { }
-
-
-                    if (dimensions.Contains(',') &&
-                        int.TryParse(dimensions.Split(',')[0], out _) &&
-
-                        int.TryParse(dimensions.Split(',')[1], out _) &&
-
-                        surface.Width > 0 && surface.Length > 0)
-                        vehicle.Pass = true;
-                    else
-                        WriteLine("ERROR. Invalid dimensions. Please try again.");
+                    dimensionsPositionsCrator.CreateNewDimensions();
+                    break;
                 } while (!vehicle.Pass);
 
                 //Input and validation of x, y positions.
                 vehicle.Pass = false;
                 do
                 {
-                    Write($"Starting position of the monstertruck (in terms of X and Y (e.g: 0,0)): ");
-
-                    var position = ReadLine();
-                    try
-                    {
-
-                        int.TryParse(position.Split(',')[0], out int xValue);
-                        int.TryParse(position.Split(',')[1], out int yValue);
-                        vehiclePosition.X = xValue;
-                        vehiclePosition.Y = yValue;
-                    }
-                    catch { }
-
-                    if (position.Contains(',') &&
-                        int.TryParse(position.Split(',')[0], out _) &&
-                        int.TryParse(position.Split(',')[1], out _) &&
-                        vehiclePosition.X >= 0 && vehiclePosition.Y >= 0 &&
-                        vehiclePosition.X <= surface.Width - 1 && vehiclePosition.Y <= surface.Length - 1)
-                        vehicle.Pass = true;
-
-                    else
-                        WriteLine("ERROR. Invalid coordinators. Please try again.");
+                    dimensionsPositionsCrator.CreateNewPosition();
+                    break;
                 } while (!vehicle.Pass);
 
                 //Input and validation of direction.
@@ -151,7 +108,7 @@ namespace MonsterTruckDrivingTest
                     }
 
                     //checker, if we hit a wall.
-                    if (vehiclePosition.CurrentX < 0 || vehiclePosition.CurrentY < 0 || vehiclePosition.CurrentX >= surface.Width || vehiclePosition.CurrentY >= surface.Length)
+                    if (vehiclePosition.CurrentX < 0 || vehiclePosition.CurrentY < 0 || vehiclePosition.CurrentX >= dimensionsPositionsCrator.width || vehiclePosition.CurrentY >= dimensionsPositionsCrator.length)
                     {
                         WriteLine($"Uh oh, we hit the wall!({vehiclePosition.CurrentX}, {vehiclePosition.CurrentY})");
                         break;
