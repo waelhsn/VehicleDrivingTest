@@ -98,7 +98,6 @@ namespace MonsterTruckDrivingTest
                         case 'R':
                             Write("Rotating 90° to the right ");
                             currentDirection = (currentDirection + 1);
-
                             break;
 
                         case 'L':

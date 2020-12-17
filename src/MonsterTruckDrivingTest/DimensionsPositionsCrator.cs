@@ -7,9 +7,7 @@ namespace MonsterTruckDrivingTest.Model
         public int width =  new SurfaceProperties().Width;
         public int length =  new SurfaceProperties().Length;
         public int X = new Position().X;
-        public int currentX = new Position().CurrentX;
         public int Y = new Position().Y;
-        public int currentY = new Position().CurrentY;
 
         public void CreateNewDimensions()
         {
