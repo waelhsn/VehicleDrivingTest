@@ -56,23 +56,23 @@ namespace MonsterTruckDrivingTest
                 // Input and validation of driving commands.
                 do
                 {
-                    //Setting the allowed commands for this driving session.
-                    var allowedCommands = new[] { 'F', 'B', 'R', 'L' };
-                    Write("Commands to be executed for final driving result: ");
-                    vehicle.Commands = ReadLine().ToUpper();
+                    ////Setting the allowed commands for this driving session.
+                    //var allowedCommands = new[] { 'F', 'B', 'R', 'L' };
+                    //Write("Commands to be executed for final driving result: ");
+                    //vehicle.Commands = ReadLine().ToUpper();
 
-                    foreach (var command in vehicle.Commands)
+                    //foreach (var command in vehicle.Commands)
 
-                        if (!allowedCommands.Contains(command))
-                            vehicle.Pass = false;
+                    //    if (!allowedCommands.Contains(command))
+                    //        vehicle.Pass = false;
 
-                    if (!vehicle.Pass)
-                        WriteLine("ERROR: Commands contain a character that doesn't belong to allowed set. Please try again.");
+                    //if (!vehicle.Pass)
+                    //    WriteLine("ERROR: Commands contain a character that doesn't belong to allowed set. Please try again.");
 
                 } while (!vehicle.Pass);
 
-                vehiclePosition.CurrentX = vehiclePosition.X;
-                vehiclePosition.CurrentY = vehiclePosition.Y;
+                vehiclePosition.CurrentX = dimensionsPositionsCrator.X;
+                vehiclePosition.CurrentY = dimensionsPositionsCrator.Y;
 
                 Directions currentDirection = initialDirection;
                 //Process the commands.

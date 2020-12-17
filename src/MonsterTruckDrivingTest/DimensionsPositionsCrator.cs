@@ -6,6 +6,11 @@ namespace MonsterTruckDrivingTest.Model
     {
         public int width =  new SurfaceProperties().Width;
         public int length =  new SurfaceProperties().Length;
+        public int X = new Position().X;
+        public int currentX = new Position().CurrentX;
+        public int Y = new Position().Y;
+        public int currentY = new Position().CurrentY;
+
         public void CreateNewDimensions()
         {
             var vehicle = new VehicleProperties();
@@ -38,8 +43,8 @@ namespace MonsterTruckDrivingTest.Model
             {
                 int.TryParse(position.Split(',')[0], out int xValue);
                 int.TryParse(position.Split(',')[1], out int yValue);
-                vehiclePosition.X = xValue;
-                vehiclePosition.Y = yValue;
+                X = xValue;
+                Y = yValue;
             } catch { }
 
             if (position.Contains(',') &&
