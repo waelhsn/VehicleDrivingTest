@@ -5,8 +5,7 @@ namespace MonsterTruckDrivingTest.Model
     {
         North,
         East,
-        South, 
-        West,
-        NotSet
+        South,
+        West
     }
 }
