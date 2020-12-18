@@ -2,11 +2,11 @@
 
 namespace MonsterTruckDrivingTest.Helper
 {
-    public class Environment
+    public static class Shared
     {
-        public bool Pass;
-        private string _errorMessage;
-        public string ErrorMessage
+        public static bool Pass = true;
+        private static string _errorMessage;
+        public static string ErrorMessage
         {
             get { return _errorMessage; }
             set
@@ -17,23 +17,18 @@ namespace MonsterTruckDrivingTest.Helper
             }
         }
 
-        public Environment()
-        {
-            Pass = true;
-        }
-
-        public string ReadLine()
+        public static string ReadLine()
         {
             return Console.ReadLine();
         }
 
-        public bool Write(string output)
+        public static bool Write(string output)
         {
             Console.Write(output);
             return true;
         }
 
-        public bool WriteLine(string output)
+        public static bool WriteLine(string output)
         {
             Console.WriteLine(output);
             return true;

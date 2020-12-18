@@ -1,4 +1,5 @@
-﻿using MonsterTruckDrivingTest.Helper;
+﻿using static MonsterTruckDrivingTest.Helper.Shared;
+using MonsterTruckDrivingTest.Helper;
 using MonsterTruckDrivingTest.Model;
 using System.Collections.Generic;
 
@@ -8,18 +9,17 @@ namespace MonsterTruckDrivingTest
     {
         public static void Main(string[] args)
         {
-            var environment = new Environment();
-            environment.WriteLine("* * * Welcome to Monster Truck driving test * * *");
+            WriteLine("* * * Welcome to Monster Truck driving test * * *");
 
             var surface = new Surface();
             var vehicle = new Vehicle();
 
             do
             {
-                environment.Pass = vehicle.IsInsideSurface(surface);
-                if (!environment.Pass)
+                Pass = vehicle.IsInsideSurface(surface);
+                if (!Pass)
                 {
-                    environment.ErrorMessage = "ERROR: Defined vehicle is outside defined surface. Try again.";
+                    ErrorMessage = "ERROR: Defined vehicle is outside defined surface. Try again.";
                     surface = new Surface();
                     vehicle = new Vehicle();
                 }
@@ -31,7 +31,7 @@ namespace MonsterTruckDrivingTest
             do
             {
                 commands = new List<CommandEnum>();
-                environment.Write(@"
+                Write(@"
                 The following commands are supported for execution (Type EXIT to exit):
                 * F = Forwards one step.
                 * B = Backwards one step.
@@ -40,7 +40,7 @@ namespace MonsterTruckDrivingTest
 
                 Commands to be executed for final driving result: ");
 
-                var input = environment.ReadLine().ToUpper();
+                var input = ReadLine().ToUpper();
                 if (input == "EXIT")
                     break;
 
@@ -48,12 +48,12 @@ namespace MonsterTruckDrivingTest
                     if (System.Enum.GetName(typeof(CommandEnum), command) != null)
                         commands.Add((CommandEnum)command);
                     else
-                        environment.WriteLine($"WARNING: Ignoring unknown command: {command}");
+                        WriteLine($"WARNING: Ignoring unknown command: {command}");
 
                 if (commands.Count == 0)
-                    environment.ErrorMessage = "ERROR: No command to execute.";
+                    ErrorMessage = "ERROR: No command to execute.";
                 else if (!vehicle.Move(surface, ref commands))
-                    environment.ErrorMessage = "ERROR: We hit the wall.";
+                    ErrorMessage = "ERROR: We hit the wall.";
             } while (true);
         }
     }

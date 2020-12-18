@@ -1,10 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using static MonsterTruckDrivingTest.Helper.Shared;
 using MonsterTruckDrivingTest.Helper;
+using System.Collections.Generic;
+using System;
 
 namespace MonsterTruckDrivingTest.Model
 {
-    public class Vehicle : Helper.Environment
+    public class Vehicle
     {
         public int X;
         public int Y;

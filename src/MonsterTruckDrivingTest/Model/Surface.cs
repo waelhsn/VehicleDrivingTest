@@ -1,8 +1,8 @@
-﻿using MonsterTruckDrivingTest.Helper;
+﻿using static MonsterTruckDrivingTest.Helper.Shared;
 
 namespace MonsterTruckDrivingTest.Model
 {
-    public class Surface : Environment
+    public class Surface
     {
         public int Width;
         public int Length;
