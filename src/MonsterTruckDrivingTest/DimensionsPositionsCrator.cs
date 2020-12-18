@@ -1,13 +1,13 @@
-﻿using System;
+﻿using static System.Console;
 using System.Linq;
-using static System.Console;
+using System;
 
 namespace MonsterTruckDrivingTest.Model
 {
     public class DimensionsPositionsCrator
     {
-        public int width =  new SurfaceProperties().Width;
-        public int length =  new SurfaceProperties().Length;
+        public int width = new SurfaceProperties().Width;
+        public int length = new SurfaceProperties().Length;
         public string commands = new VehicleProperties().Commands;
         public bool pass = new VehicleProperties().Pass;
         public int X = new Position().X;
@@ -27,7 +27,8 @@ namespace MonsterTruckDrivingTest.Model
                 int.TryParse(dimensions.Split(',')[1], out int lengthValue);
                 width = widthValue;
                 length = lengthValue;
-            } catch { }
+            }
+            catch { }
 
             if (dimensions.Contains(',') &&
                 int.TryParse(dimensions.Split(',')[0], out _) &&
@@ -48,7 +49,8 @@ namespace MonsterTruckDrivingTest.Model
                 int.TryParse(position.Split(',')[1], out int yValue);
                 X = xValue;
                 Y = yValue;
-            } catch { }
+            }
+            catch { }
 
             if (position.Contains(',') &&
                 int.TryParse(position.Split(',')[0], out _) &&
@@ -92,8 +94,8 @@ namespace MonsterTruckDrivingTest.Model
 
                     if (!allowedCommands.Contains(command))
                         pass = false;
-                    if (!pass)
-                        WriteLine("ERROR: Commands contain a character that doesn't belong to allowed set. Please try again.");
+                if (!pass)
+                    WriteLine("ERROR: Commands contain a character that doesn't belong to allowed set. Please try again.");
 
             } while (!pass);
         }

@@ -10,7 +10,7 @@ namespace MonsterTruckDrivingTest
             while (true)
             {
                 WriteLine("* * * Welcome to Monster Truck driving test * * *");
-              //  var gearBox = new GearBox();
+                //  var gearBox = new GearBox();
                 var dimensionsPositionsCrator = new DimensionsPositionsCrator();
 
                 //Input and validation of surface width and length.
@@ -29,7 +29,7 @@ namespace MonsterTruckDrivingTest
                 //Input and validation of direction.
                 dimensionsPositionsCrator.pass = false;
 
-               // Directions initialDirection;
+                // Directions initialDirection;
                 do
                 {
                     dimensionsPositionsCrator.DirectionsValidation();
@@ -37,7 +37,7 @@ namespace MonsterTruckDrivingTest
 
                 // the commands.
                 dimensionsPositionsCrator.GearStick();
-                
+
             }
         }
     }
