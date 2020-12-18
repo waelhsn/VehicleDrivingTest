@@ -1,5 +1,5 @@
-﻿using MonsterTruckDrivingTest.Helper;
-using static MonsterTruckDrivingTest.Helper.Shared;
+﻿using static MonsterTruckDrivingTest.Helper.EnvironmentHelper;
+using MonsterTruckDrivingTest.Helper;
 using MonsterTruckDrivingTest.Model;
 using System.Collections.Generic;
 
@@ -27,9 +27,8 @@ namespace MonsterTruckDrivingTest
                 else break;
             } while (true);
 
-
             //Command validation
-            List<CommandEnum> commands;
+            var commands = new List<CommandEnum>();
 
             do
             {

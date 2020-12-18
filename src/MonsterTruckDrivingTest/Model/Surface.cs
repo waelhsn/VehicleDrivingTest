@@ -1,4 +1,4 @@
-﻿using static MonsterTruckDrivingTest.Helper.Shared;
+﻿using static MonsterTruckDrivingTest.Helper.EnvironmentHelper;
 
 namespace MonsterTruckDrivingTest.Model
 {
@@ -6,7 +6,7 @@ namespace MonsterTruckDrivingTest.Model
     {
         public int Width;
         public int Length;
-        public Surface()
+        public  Surface()
         {
             Write($"Width and length of the surface (in terms of Width, Length (e.g: 10,10)): ");
 

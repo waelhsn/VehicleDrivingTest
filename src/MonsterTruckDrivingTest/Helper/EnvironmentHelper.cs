@@ -2,9 +2,11 @@
 
 namespace MonsterTruckDrivingTest.Helper
 {
-    public static class Shared
+    public static class EnvironmentHelper
     {
         public static bool Pass = true;
+
+        //Setting a helper to display the error of all inputs.
         private static string _errorMessage;
         public static string ErrorMessage
         {
@@ -17,6 +19,7 @@ namespace MonsterTruckDrivingTest.Helper
             }
         }
 
+        //Creating a shortcuts for Console Write/Read.
         public static string ReadLine()
         {
             return Console.ReadLine();

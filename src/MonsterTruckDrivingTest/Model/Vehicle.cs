@@ -1,4 +1,4 @@
-﻿using static MonsterTruckDrivingTest.Helper.Shared;
+﻿using static MonsterTruckDrivingTest.Helper.EnvironmentHelper;
 using MonsterTruckDrivingTest.Helper;
 using System.Collections.Generic;
 using System;
@@ -69,14 +69,12 @@ namespace MonsterTruckDrivingTest.Model
                         Y += Direction == DirectionEnum.North ? 1 : Direction == DirectionEnum.South ? -1 : 0;
                         break;
 
-
                     //parsing Backward step.
                     case CommandEnum.Backward:
                         WriteLine($"Step {counter++}, Going backward.");
                         X += Direction == DirectionEnum.East ? -1 : Direction == DirectionEnum.West ? 1 : 0;
                         Y += Direction == DirectionEnum.North ? -1 : Direction == DirectionEnum.South ? 1 : 0;
                         break;
-
 
                     //parsing rotate right step. NOTE: the percentage symbol-
                     //sets the validate of the enums directions, so it must read only the first 4 values (0, 1, 2, 3)-
@@ -86,6 +84,10 @@ namespace MonsterTruckDrivingTest.Model
                         Direction = (DirectionEnum)(((byte)Direction + 1) % 4);
                         break;
 
+                    // parsing rotate left step. NOTE: DirectionEnum has 4 values, 
+                    // North = step 0, East = step 1, South = step 2, West = step 3.
+                    // e.g: if the user chooes the direction to East and gave a command Left,
+                    // then the process would be East + 3 efter step 1. Then direction will be to the North.
                     case CommandEnum.RotateLeft:
                         WriteLine($"Step  {counter++}, Rotating 90° to the left.");
                         Direction = (DirectionEnum)(((byte)Direction + 3) % 4);
