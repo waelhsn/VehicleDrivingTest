@@ -1,5 +1,5 @@
-﻿using static MonsterTruckDrivingTest.Helper.Shared;
-using MonsterTruckDrivingTest.Helper;
+﻿using MonsterTruckDrivingTest.Helper;
+using static MonsterTruckDrivingTest.Helper.Shared;
 using MonsterTruckDrivingTest.Model;
 using System.Collections.Generic;
 
@@ -14,16 +14,21 @@ namespace MonsterTruckDrivingTest
             var surface = new Surface();
             var vehicle = new Vehicle();
 
+            //Input validation for vehicle postion vs surface
             do
             {
                 Pass = vehicle.IsInsideSurface(surface);
                 if (!Pass)
                 {
-                    ErrorMessage = "ERROR: Defined vehicle is outside the defined surface. Try again.";
+                    ErrorMessage = "ERROR: Defined vehicle is outside defined surface. Try again.";
+                    surface = new Surface();
+                    vehicle = new Vehicle();
                 }
                 else break;
             } while (true);
 
+
+            //Command validation
             List<CommandEnum> commands;
 
             do
