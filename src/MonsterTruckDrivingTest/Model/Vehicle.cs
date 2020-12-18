@@ -25,6 +25,7 @@ namespace MonsterTruckDrivingTest.Model
                     ErrorMessage = "ERROR. Invalid coordinators. Please try again.";
             } while (!Pass);
 
+
             do
             {
                 Write($"Direction of the monstertruck at the start point (North, East, South or West): ");
@@ -40,6 +41,7 @@ namespace MonsterTruckDrivingTest.Model
             return X < surface.Width && Y < surface.Length;
         }
 
+        //Start moving steps, command validation width, lengs VS x, y.
         public bool Move(Surface surface, ref List<CommandEnum> commands)
         {
             Pass = IsInsideSurface(surface);
@@ -49,40 +51,43 @@ namespace MonsterTruckDrivingTest.Model
                 return false;
             }
 
+            //Commands counter, if the user would multiple commands.
             var counter = 1;
+
+            //Commands process 
             foreach (var command in commands)
             {
                 switch (command)
                 {
                     case CommandEnum.Forward:
-                        WriteLine($"Step {counter++}- Going forward.");
+                        WriteLine($"Step {counter++}, Going forward.");
                         X += Direction == DirectionEnum.East ? 1 : Direction == DirectionEnum.West ? -1 : 0;
                         Y += Direction == DirectionEnum.North ? 1 : Direction == DirectionEnum.South ? -1 : 0;
                         break;
 
                     case CommandEnum.Backward:
-                        WriteLine($"Step {counter++}- Going backward.");
+                        WriteLine($"Step {counter++}, Going backward.");
                         X += Direction == DirectionEnum.East ? -1 : Direction == DirectionEnum.West ? 1 : 0;
                         Y += Direction == DirectionEnum.North ? -1 : Direction == DirectionEnum.South ? 1 : 0;
                         break;
 
                     case CommandEnum.RotateRight:
-                        WriteLine($"Step {counter++}- Rotating to the right.");
+                        WriteLine($"Step {counter++}: Rotating 90° to the right.");
                         Direction = (DirectionEnum)(((byte)Direction + 1) % 4);
                         break;
 
                     case CommandEnum.RotateLeft:
-                        WriteLine($"Step {counter++}- Rotating to the left.");
+                        WriteLine($"Step  {counter++}, Rotating 90° to the left.");
                         Direction = (DirectionEnum)(((byte)Direction + 3) % 4);
                         break;
                 }
 
-                //Validate changes done to the vehicle.
+                //Validation for selection start point position of the vehicle.
                 Pass = !(X > surface.Width || Y > surface.Length || X < 0 || Y < 0);
                 if (!Pass)
                     return false;
                 else
-                    WriteLine($"Current position: X={X}, Y={Y}, Direction={Direction}");
+                    WriteLine($"Current position (X, Y): ({X}, {Y}), Direction is: {Direction}");
             }
 
             return true;

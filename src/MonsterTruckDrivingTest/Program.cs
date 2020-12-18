@@ -19,9 +19,7 @@ namespace MonsterTruckDrivingTest
                 Pass = vehicle.IsInsideSurface(surface);
                 if (!Pass)
                 {
-                    ErrorMessage = "ERROR: Defined vehicle is outside defined surface. Try again.";
-                    surface = new Surface();
-                    vehicle = new Vehicle();
+                    ErrorMessage = "ERROR: Defined vehicle is outside the defined surface. Try again.";
                 }
                 else break;
             } while (true);
