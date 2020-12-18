@@ -12,6 +12,8 @@ namespace MonsterTruckDrivingTest.Model
         public DirectionEnum Direction;
         public Vehicle()
         {
+
+            //Position validation of vehicle at startpoint with X and Y.
             do
             {
                 Write($"Starting position of the monstertruck (in terms of X and Y (e.g: 0,0)): ");
@@ -25,7 +27,7 @@ namespace MonsterTruckDrivingTest.Model
                     ErrorMessage = "ERROR. Invalid coordinators. Please try again.";
             } while (!Pass);
 
-
+            //parsing vehicle direction at startpoint.
             do
             {
                 Write($"Direction of the monstertruck at the start point (North, East, South or West): ");
@@ -36,6 +38,7 @@ namespace MonsterTruckDrivingTest.Model
             } while (!Pass);
         }
         
+        //Boolean lookup. Checking if the startpoint of the vehicle inside the surface.
         public bool IsInsideSurface(Surface surface)
         {
             return X < surface.Width && Y < surface.Length;
@@ -59,18 +62,25 @@ namespace MonsterTruckDrivingTest.Model
             {
                 switch (command)
                 {
+                    //parsing forward step.
                     case CommandEnum.Forward:
                         WriteLine($"Step {counter++}, Going forward.");
                         X += Direction == DirectionEnum.East ? 1 : Direction == DirectionEnum.West ? -1 : 0;
                         Y += Direction == DirectionEnum.North ? 1 : Direction == DirectionEnum.South ? -1 : 0;
                         break;
 
+
+                    //parsing Backward step.
                     case CommandEnum.Backward:
                         WriteLine($"Step {counter++}, Going backward.");
                         X += Direction == DirectionEnum.East ? -1 : Direction == DirectionEnum.West ? 1 : 0;
                         Y += Direction == DirectionEnum.North ? -1 : Direction == DirectionEnum.South ? 1 : 0;
                         break;
 
+
+                    //parsing rotate right step. NOTE: the percentage symbol-
+                    //sets the validate of the enums directions, so it must read only the first 4 values (0, 1, 2, 3)-
+                    //of the DirectionEnum class.
                     case CommandEnum.RotateRight:
                         WriteLine($"Step {counter++}: Rotating 90° to the right.");
                         Direction = (DirectionEnum)(((byte)Direction + 1) % 4);
