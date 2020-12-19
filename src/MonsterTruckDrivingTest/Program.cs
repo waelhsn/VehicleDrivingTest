@@ -17,6 +17,7 @@ namespace MonsterTruckDrivingTest
             //Input validation for vehicle postion vs surface
             do
             {
+                
                 Pass = vehicle.IsInsideSurface(surface);
                 if (!Pass)
                 {
@@ -28,11 +29,11 @@ namespace MonsterTruckDrivingTest
             } while (true);
 
             //Command validation
-            var commands = new List<CommandEnum>();
+            var commands = new List<Command>();
 
             do
             {
-                commands = new List<CommandEnum>();
+                commands = new List<Command>();
                 Write(@"
                 The following commands are supported for execution (Type EXIT to exit):
                 * F = Forwards one step.
@@ -47,8 +48,8 @@ namespace MonsterTruckDrivingTest
                     break;
 
                 foreach (char command in input)
-                    if (System.Enum.GetName(typeof(CommandEnum), command) != null)
-                        commands.Add((CommandEnum)command);
+                    if (System.Enum.GetName(typeof(Command), command) != null)
+                        commands.Add((Command)command);
                     else
                         WriteLine($"WARNING: Ignoring unknown command: {command}");
 

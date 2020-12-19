@@ -10,7 +10,15 @@ namespace MonsterTruckDrivingTest.Tests
         [TestMethod()]
         public void SurfacAndDrivingBuilderTest()
         {
-            
+
+            var surface = new Surface();
+            var vehicle = new Vehicle();
+
+            EnvironmentHelper.Pass = vehicle.IsInsideSurface(surface);
+
+            //Assert.IsTrue(vehicle.IsInsideSurface(surface), false.ToString());
+
+
         }
     }
 };

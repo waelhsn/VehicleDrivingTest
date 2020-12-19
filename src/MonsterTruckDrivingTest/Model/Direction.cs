@@ -1,6 +1,7 @@
 ﻿namespace MonsterTruckDrivingTest.Helper
 {
-    public enum DirectionEnum
+    //Total directions that allow the vehicle to rotate to.
+    public enum Direction
     {
         North,
         East,

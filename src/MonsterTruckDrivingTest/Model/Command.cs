@@ -1,6 +1,7 @@
 ﻿namespace MonsterTruckDrivingTest.Helper
 {
-    public enum CommandEnum
+    //The commands that can affect the vehicle movements.
+    public enum Command
     {
         Forward = 'F',
         Backward = 'B',

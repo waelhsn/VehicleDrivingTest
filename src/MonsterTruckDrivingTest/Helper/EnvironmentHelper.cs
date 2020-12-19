@@ -4,6 +4,7 @@ namespace MonsterTruckDrivingTest.Helper
 {
     public static class EnvironmentHelper
     {
+        //A true boolean to validate the condiations.
         public static bool Pass = true;
 
         //Setting a helper to display the error of all inputs.

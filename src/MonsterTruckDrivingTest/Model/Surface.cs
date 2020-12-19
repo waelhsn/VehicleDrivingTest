@@ -13,6 +13,7 @@ namespace MonsterTruckDrivingTest.Model
             //Dimensions validation of the sureface for the width and length.
             var dimensions = ReadLine();
 
+            //Validation of the dimensions input as (Width value, Length value.)
             Pass = int.TryParse(dimensions.Split(',')[0], out Width) &&
                 int.TryParse(dimensions.Split(',')[1], out Length) &&
                 Width > 0 && Length > 0;
