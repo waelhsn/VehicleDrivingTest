@@ -1,7 +1,7 @@
-﻿using static MonsterTruckDrivingTest.Helper.EnvironmentHelper;
-using MonsterTruckDrivingTest.Helper;
+﻿using MonsterTruckDrivingTest.Helper;
 using MonsterTruckDrivingTest.Model;
 using System.Collections.Generic;
+using static MonsterTruckDrivingTest.Helper.EnvironmentHelper;
 
 namespace MonsterTruckDrivingTest
 {
@@ -17,7 +17,6 @@ namespace MonsterTruckDrivingTest
             //Input validation for vehicle postion vs surface
             do
             {
-                
                 Pass = vehicle.IsInsideSurface(surface);
                 if (!Pass)
                 {
@@ -56,7 +55,10 @@ namespace MonsterTruckDrivingTest
                 if (commands.Count == 0)
                     ErrorMessage = "ERROR: No command to execute.";
                 else if (!vehicle.Move(surface, ref commands))
-                    ErrorMessage = "ERROR: We hit the wall.";
+                {
+                    ErrorMessage = "\n\nERROR: We hit the wall. \n\nDriving session has ended.";
+                    break;
+                }
             } while (true);
         }
     }

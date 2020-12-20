@@ -12,21 +12,28 @@ namespace MonsterTruckDrivingTest.Model
         public Direction Direction;
         public Vehicle()
         {
-
             //Position validation of vehicle at startpoint with X and Y.
             do
             {
-                Write($"Starting position of the monstertruck (in terms of X and Y (e.g: 0,0)): ");
+                Write("Starting position of the monstertruck (in terms of X {space} Y (e.g: 0 0)): ");
                 var position = ReadLine();
+                try
+                {
+                    //Validation of the position input as (X value, Y value.)
+                    Pass = int.TryParse(position.Split(' ')[0], out X)
+                      && int.TryParse(position.Split(' ')[1], out Y)
+                      && X >= 0 && Y >= 0;
+                }
 
-                //Validation of the position input as (X value, Y value.)
-                Pass = int.TryParse(position.Split(',')[0], out X)
-                    && int.TryParse(position.Split(',')[1], out Y)
-                    && X >= 0 && Y >= 0;
+                catch
+                {
+                    Pass = false;
+                }
 
                 if (!Pass)
                     ErrorMessage = "ERROR. Invalid coordinators. Please try again.";
             } while (!Pass);
+
 
             //parsing vehicle direction at startpoint.
             do
@@ -38,20 +45,20 @@ namespace MonsterTruckDrivingTest.Model
                     ErrorMessage = "ERROR. Invalid direction. Please try again.";
             } while (!Pass);
         }
-        
+
         //Boolean lookup. Checking if the startpoint of the vehicle inside the surface.
         public bool IsInsideSurface(Surface surface)
         {
             return X < surface.Width && Y < surface.Length;
         }
 
-        //Start moving steps, command validation width, lengs VS x, y.
+        //Start moving steps, command validation width, lengths VS x, y.
         public bool Move(Surface surface, ref List<Command> commands)
         {
             Pass = IsInsideSurface(surface);
             if (!Pass)
             {
-                ErrorMessage = "ERROR: Vehicle provided is outside surface dimensions.";
+                ErrorMessage = "ERROR: The vehicle located outside the surface dimensions.";
                 return false;
             }
 
@@ -95,12 +102,12 @@ namespace MonsterTruckDrivingTest.Model
                         break;
                 }
 
-                //Validation for selection start point position of the vehicle.
-                Pass = !(X > surface.Width || Y > surface.Length || X < 0 || Y < 0);
+                //Validation of vehicle movement. (e.g if the vehicle hit a wall )
+                Pass = !(X >= surface.Width || Y >= surface.Length || X < 0 || Y < 0);
                 if (!Pass)
                     return false;
                 else
-                    WriteLine($"Current position (X, Y): ({X}, {Y}), Direction is: {Direction}");
+                    WriteLine($"Current position (X  Y): ({X} {Y}), Direction is: {Direction}");
             }
 
             return true;

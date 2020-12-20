@@ -6,20 +6,29 @@ namespace MonsterTruckDrivingTest.Model
     {
         public int Width;
         public int Length;
-        public  Surface()
+        public Surface()
         {
-            Write($"Width and length of the surface (in terms of Width, Length (e.g: 10,10)): ");
-
             //Dimensions validation of the sureface for the width and length.
-            var dimensions = ReadLine();
+            do
+            {
+                Write("Width and length of the surface (in terms of Width {space} Length (e.g: 10 10)): ");
+                var dimensions = ReadLine();
+                try
+                {
+                    //Validation of the dimensions input as (Width value, Length value.)
+                    Pass = int.TryParse(dimensions.Split(' ')[0], out Width) &&
+                           int.TryParse(dimensions.Split(' ')[1], out Length) &&
+                        Width > 0 && Length > 0;
+                }
 
-            //Validation of the dimensions input as (Width value, Length value.)
-            Pass = int.TryParse(dimensions.Split(',')[0], out Width) &&
-                int.TryParse(dimensions.Split(',')[1], out Length) &&
-                Width > 0 && Length > 0;
+                catch
+                {
+                    Pass = false;
+                }
 
-            if (!Pass)
-                ErrorMessage = "ERROR. Invalid dimensions. Please try again.";
+                if (!Pass)
+                    ErrorMessage = "ERROR. Invalid dimensions. Please try again.";
+            } while (!Pass);
         }
     }
 }
