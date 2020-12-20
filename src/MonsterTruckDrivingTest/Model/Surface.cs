@@ -15,7 +15,7 @@ namespace MonsterTruckDrivingTest.Model
                 var dimensions = ReadLine();
                 try
                 {
-                    //Validation of the dimensions input as (Width value, Length value.)
+                    //Validation of the dimensions input as (Width value Length value. (e.g: 10 10))
                     Pass = int.TryParse(dimensions.Split(' ')[0], out Width) &&
                            int.TryParse(dimensions.Split(' ')[1], out Length) &&
                         Width > 0 && Length > 0;
