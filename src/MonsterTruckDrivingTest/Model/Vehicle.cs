@@ -21,8 +21,8 @@ namespace MonsterTruckDrivingTest.Model
                 {
                     //Validation of the position input as (X value, Y value.)
                     Pass = int.TryParse(position.Split(' ')[0], out X)
-                      && int.TryParse(position.Split(' ')[1], out Y)
-                      && X >= 0 && Y >= 0;
+                          && int.TryParse(position.Split(' ')[1], out Y)
+                          && X >= 0 && Y >= 0;
                 }
 
                 catch

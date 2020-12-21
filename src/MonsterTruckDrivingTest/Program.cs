@@ -7,7 +7,7 @@ namespace MonsterTruckDrivingTest
 {
     public class Program
     {
-        public static void Main(string[] args)
+        public static void Main()
         {
             WriteLine("* * * Welcome to Monster Truck driving test * * *");
 

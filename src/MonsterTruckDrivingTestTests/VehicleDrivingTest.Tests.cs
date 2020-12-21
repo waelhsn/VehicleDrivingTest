@@ -1,5 +1,7 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using MonsterTruckDrivingTest.Model;
+using System;
+using System.IO;
 
 namespace MonsterTruckDrivingTest.Tests
 {
@@ -10,7 +12,7 @@ namespace MonsterTruckDrivingTest.Tests
         public void SurfacAndDrivingBuilderTest()
         {
             var surface = new Surface();
-            var vehicle = new Vehicle();
+          
         }
     }
 };
