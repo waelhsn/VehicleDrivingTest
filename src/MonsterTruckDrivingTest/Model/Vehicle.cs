@@ -49,12 +49,8 @@ namespace MonsterTruckDrivingTest.Model
                     ErrorMessage = "ERROR. Invalid direction. Please try again.";
             } while (!Pass);
         }
-        /// <summary>
-        ///Boolean lookup. Checking if the startpoint of the vehicle inside the surface.
-        /// 
-        /// </summary>
-        /// <param name="surface"></param>
-        /// <returns></returns>
+        
+        //Boolean lookup. Checking if the startpoint of the vehicle inside the surface.
         public bool IsInsideSurface(Surface surface)
         {
             return X < surface.Width && Y < surface.Length;
