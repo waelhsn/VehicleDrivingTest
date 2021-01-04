@@ -1,7 +1,7 @@
-﻿using MonsterTruckDrivingTest.Helper;
+﻿using static MonsterTruckDrivingTest.Helper.EnvironmentHelper;
+using MonsterTruckDrivingTest.Helper;
 using MonsterTruckDrivingTest.Model;
 using System.Collections.Generic;
-using static MonsterTruckDrivingTest.Helper.EnvironmentHelper;
 
 namespace MonsterTruckDrivingTest
 {
@@ -12,23 +12,24 @@ namespace MonsterTruckDrivingTest
             WriteLine("* * * Welcome to Monster Truck driving test * * *");
 
             var surface = new Surface();
-            var vehicle = new Vehicle();
+            Vehicle monsterTruck = new Vehicle();
 
             //Input validation for vehicle postion vs surface
             do
             {
-                Pass = vehicle.IsInsideSurface(surface);
+                Pass = monsterTruck.IsInsideSurface(surface);
+                
                 if (!Pass)
                 {
                     ErrorMessage = "ERROR: Defined vehicle is outside defined surface. Try again.";
                     surface = new Surface();
-                    vehicle = new Vehicle();
+                    monsterTruck = new Vehicle();
                 }
                 else break;
             } while (true);
 
             //Command validation
-            var commands = new List<Command>();
+            List<Command> commands = new List<Command>();
 
             do
             {
@@ -54,7 +55,7 @@ namespace MonsterTruckDrivingTest
 
                 if (commands.Count == 0)
                     ErrorMessage = "ERROR: No command to execute.";
-                else if (!vehicle.Move(surface, ref commands))
+                else if (!monsterTruck.Move(surface, ref commands))
                 {
                     ErrorMessage = "\n\nERROR: We hit the wall. \n\nDriving session has ended.";
                     break;

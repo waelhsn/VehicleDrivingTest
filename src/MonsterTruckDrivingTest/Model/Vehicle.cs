@@ -5,6 +5,10 @@ using System;
 
 namespace MonsterTruckDrivingTest.Model
 {
+    /// <summary>
+    /// Test comment
+    /// 
+    /// </summary>
     public class Vehicle
     {
         public int X;
@@ -45,8 +49,12 @@ namespace MonsterTruckDrivingTest.Model
                     ErrorMessage = "ERROR. Invalid direction. Please try again.";
             } while (!Pass);
         }
-
-        //Boolean lookup. Checking if the startpoint of the vehicle inside the surface.
+        /// <summary>
+        ///Boolean lookup. Checking if the startpoint of the vehicle inside the surface.
+        /// 
+        /// </summary>
+        /// <param name="surface"></param>
+        /// <returns></returns>
         public bool IsInsideSurface(Surface surface)
         {
             return X < surface.Width && Y < surface.Length;
@@ -97,7 +105,7 @@ namespace MonsterTruckDrivingTest.Model
                     // e.g: if the user chooes the direction to East and gave a command Left,
                     // then the process would be East + 3 efter step 1. Then direction will be to the North.
                     case Command.RotateLeft:
-                        WriteLine($"Step  {counter++}, Rotating 90° to the left.");
+                        WriteLine($"Step {counter++}, Rotating 90° to the left.");
                         Direction = (Direction)(((byte)Direction + 3) % 4);
                         break;
                 }
