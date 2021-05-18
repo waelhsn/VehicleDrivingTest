@@ -13,6 +13,6 @@ jobs:
 
     steps:
       - name: Build
-        run: dotnet build ./src/MonsterTruckDrivingTest.sln
+        run: dotnet build ../../../*.sln
       - name: Test
         run: dotnet test --no-restore --verbosity normal
