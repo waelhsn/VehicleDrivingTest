@@ -1,5 +1,8 @@
 # Monster Truck Driving Test
 
+[![.NET](https://github.com/waelhsn/VehicleDrivingTest/actions/workflows/dotnet.yml/badge.svg)](https://github.com/waelhsn/VehicleDrivingTest/actions/workflows/dotnet.yml)
+
+
 ## Introduction:
 Monster truck driving test is a Console .Net Core3.1 App, that handles simulation for a vehicle steps. A vehicle can move in different ways using selected commands to be entered into the simulation.
 
